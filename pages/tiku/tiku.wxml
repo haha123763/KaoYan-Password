@@ -1,0 +1,10 @@
+<view>
+	<view class='public_course'>
+   <view class="politics">
+      <button class="btn" hover-class="politics_btn_hover"  bindtap="btn_politics" data-course="政治">政治
+        <image src='/image/strawberry.png' class='politics_arr_left'></image>
+      </button>
+   </view>		
+   </view>
+  </view>
+

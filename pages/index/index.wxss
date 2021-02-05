@@ -1,0 +1,21 @@
+.button{
+	width: 70px;
+	height: 70px;
+	line-height:70px;
+  border-radius: 20%;
+  border: none;
+  text-align:center;
+  font-size: 25px;
+  color:#FFFFFF;
+  font-weight:bold;
+  margin-top:50px;
+}
+
+.right{
+  background:#a05551;
+  float: center;
+}
+.left{
+  background:#947c40;
+  
+}

@@ -1,0 +1,33 @@
+.image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+  padding-top:20px;
+}
+
+.name {
+  text-align: center;
+  padding-top:10px;
+}
+
+button{
+  background: #4A9191;
+  width: 60%;
+  margin-top: 100px;
+  color: #ffffff;
+}
+
+.btn {/*按钮*/
+  height: 50px;
+  background-color: green;
+  opacity: 0.7;
+  border-radius: 10px;
+  color: white;
+
+}
+.upload_btn_hover {/*单击动画*/
+  background-color: #87ceeb;
+  color: black;
+  opacity: 1.0;
+}

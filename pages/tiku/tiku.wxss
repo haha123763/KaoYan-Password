@@ -1,0 +1,28 @@
+.btn {/*按钮*/
+  height: 50px;
+  background-color: green;
+  opacity: 0.7;
+  border-radius: 10px;
+  color: white;
+}
+.zds_btn_hover {/*单击动画*/
+  background-color: #87ceeb;
+  color: black;
+  opacity: 1.0;
+}
+.politics_arr_left {/*箭头-左*/
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  position: fixed;
+  margin-top: 17px;
+  left: 45%;
+}
+.politics_btn{/*近代史-顺序-按钮*/
+  text-align: left;
+  height: 50px;
+  width: 50%;
+  position: fixed;
+  margin-top: 10px;
+  margin-left: 0%;
+}

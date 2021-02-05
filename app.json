@@ -1,0 +1,53 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/tiku/tiku",
+    "pages/souti/souti",
+    "pages/exam_papers/exam_papers",
+    "pages/me/me"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#4A9191",
+    "navigationBarTitleText": "小福有研",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#7a7a00",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "社区",
+        "iconPath": "image/deer.png",
+        "selectedIconPath": "image/deer-active.png"
+      },
+      {
+        "pagePath": "pages/tiku/tiku",
+        "text": "题库",
+        "iconPath": "image/cattle.png",
+        "selectedIconPath": "image/cattle-active.png"
+      },
+      {
+        "pagePath": "pages/souti/souti",
+        "text": "搜题",
+        "iconPath": "image/lion.png",
+        "selectedIconPath": "image/lion-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "image/fox.png",
+        "selectedIconPath": "image/fox-active.png"
+      }
+      
+    ]
+  },
+
+  "sitemapLocation": "sitemap.json"
+}

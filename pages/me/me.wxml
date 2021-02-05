@@ -1,0 +1,24 @@
+<view wx:if="{{!openid}}">
+  <!--open-type="getUserInfo" 引导用户进行授权 -->
+<button open-type="getUserInfo" lang="zh_CN"
+bindgetuserinfo="onGotUserInfo">登录</button>
+</view>
+
+<view class="uploader-container" wx:if="{{openid}}">
+  <!-- 用户头像 -->
+  <image class="image" src="{{userinfo.avatarUrl}}"></image>
+  <!-- 用户昵称 -->
+  <view class="name">{{userinfo.nickName}}</view>
+</view>
+
+<view>
+  <button class="btn" hover-class="upload_btn_hover" bindtap="upload">上传图片</button>
+
+  <button class="btn" hover-class="upload_btn_hover" bindtap="upload_documents">上传文档</button>
+</view>
+
+<view class="uploader-container" >
+  <!-- 上传的图片展示 -->
+  <image class="image" src="{{imgurl}}"></image>
+
+</view>
