@@ -1,7 +1,7 @@
 <!-- 主页 -->
-<loading hidden="{{loadingHidden}}">
+<!-- <loading hidden="{{loadingHidden}}">
   数据加载中
-</loading>
+</loading> -->
 <!-- 判断数组a中是否包含元素id -->
 <wxs module="m">
     var contain = function(a,id){
