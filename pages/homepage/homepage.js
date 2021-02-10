@@ -33,21 +33,19 @@ Page({
     loadingHidden:false
 
   },
-  // 轮播图
-  changeSwiper: function (e) {
-    this.setData({
-      currentIndex: e.detail.current
-    })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+// 初始化页面，用户登录信息，topic数据，用户点赞的动态priseDongtai
   onLoad: function (options) {
     console.log("调用onload")
     this.initImageSize()
     that=this
     that.getOpenid()
   },
+    // 轮播图
+    changeSwiper: function (e) {
+      this.setData({
+        currentIndex: e.detail.current
+      })
+    },
   initImageSize:function(){
     const windowWidth = wx.getSystemInfoSync().windowWidth;
     const weiboWidth = 253;
@@ -57,8 +55,6 @@ Page({
       twoImageSize:twoImageSize,
       threeImageSize:threeImageSize
     })
-    console.log("twoImageSize",twoImageSize)
-    console.log("threeImageSize",threeImageSize)
   },
 getOpenid(){
   wx.cloud.callFunction({
@@ -102,9 +98,70 @@ getData: function(start=0) {
     })
 
 },
-//初始化页面触发， 点赞触发
+//初始化页面触发，加载当前用户的点赞信息
 getPrise(openid){
-  priseDongtai:["2f6ab8515fde9c20002a90af731e68f2"]
+  console.log("加载当前用户的点赞信息")
+   wx.cloud.callFunction({
+     name:"prise",
+     data:{
+       action:"get",
+       userid:openid
+     }
+   }).then(res=>{
+     console.log(res,"get结果")
+    //  数据库未存储该用户的点赞信息
+    if(res.result.data.length==0){
+      console.log("还没有点过赞",res.result)
+      wx.cloud.callFunction({
+        name:"prise",
+        data:{
+          action:"addUser",
+          userid:openid
+        }
+      }).then(res=>{
+        console.log("增加user成功",res)
+      })
+    }else{
+      console.log(res.result.data[0],"aaaaaaa")
+      this.setData({
+        loadingHidden:true,
+        priseDongtai:res.result.data[0].priseDongtai
+      })
+    }
+   })
+},
+// 点赞或取消点赞
+PriseTap:function(event){
+  console.log(",,,,,,,,,,,,取消点赞")
+  if(event.currentTarget.dataset.status=="true"){
+    console.log("取消点赞")
+    wx.cloud.callFunction({
+      name:"prise",
+      data:{
+        action:"cancel",
+        userid:that.data.openid,
+        topicId:event.currentTarget.dataset.topicid,
+      }
+    }).then(res=>{
+      this.getData()//加载topic列表数据
+      this.getPrise(that.data.openid)//加载用户点赞信息
+    })
+  }else{
+    console.log("点赞",that.data.openid)
+    wx.cloud.callFunction({
+      name:"prise",
+      data:{
+        action:"prise",
+        userid:that.data.openid,
+        topicId:event.currentTarget.dataset.topicid,
+      }
+    }).then(res=>{
+      // console.log(res)
+      // that.data.priseDongtai.push(event.currentTarget.dataset.topicid)
+      this.getData()
+      this.getPrise(that.data.openid)
+     })
+  }
 },
 // 点击动态
 onItemClick:function(event){

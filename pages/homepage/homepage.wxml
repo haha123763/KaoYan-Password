@@ -2,6 +2,7 @@
 <loading hidden="{{loadingHidden}}">
   数据加载中
 </loading>
+<!-- 判断数组a中是否包含元素id -->
 <wxs module="m">
     var contain = function(a,id){
         if(a.indexOf(id)>-1){
@@ -74,12 +75,13 @@
      </view>
 
     <view class="weibo-handle">
+      <!-- 评论 -->
       <view class="comment-group">
         <image src="../../images/pinglun.png" bindtap="onItemClick" data-topicId='{{item._id}}' data-openid='{{item._openid}}'  >评论
         </image>
       </view>
 
-      <!-- 点赞 -->
+      <!-- 点赞 ，判断当前用户是否已经对该动态点赞-->
       <view class="praise-group" wx:if="{{m.contain(priseDongtai,item._id)}}"  bindtap="PriseTap"
        data-topicId='{{item._id}}' data-status="true" data-index="{{windex}}" >
                  <image class="shoucang" src="../../images/zan1.png" ></image>
@@ -87,13 +89,14 @@
                     {{item.prise_num}}
                   </block>
       </view>
+      <!-- 取消点赞 -->
       <view class="praise-group" wx:else  bindtap="PriseTap" data-topicId='{{item._id}}' data-status="false" >
                  <image class="shoucang" src="../../images/zan.png"  data-index="{{windex}}"></image>
                  <block >
                   {{item.prise_num}}
                 </block>
       </view>
-
+    <!-- 举报 -->
       <view class="jubao-group" bindtap="jubao" data-topicId='{{item._id}}'>
         <image src="../../images/jubao.png">举报
         </image>
