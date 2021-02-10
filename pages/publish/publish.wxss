@@ -1,0 +1,121 @@
+/* miniprogram/pages/publish/publish.wxss */
+page{
+  padding-top: 20rpx;
+  background-image: url(https://uploadfile.bizhizu.cn/up/2e/07/93/2e0793e5a2912f9b4940e39e765c55c5.jpg);
+
+}
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+.text-content {
+  padding: 10rpx 10rpx 10rpx 10rpx;
+}
+
+textarea {
+  width: 100%;
+  height: 450rpx;
+  /* background-color: #f2f3ef; */
+  background: transparent;
+}
+
+.input-content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 330rpx;
+  border-radius: 5rpx;
+  background: transparent;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+}
+
+.image-group {
+  display: flex;
+  /* nowrap不会换行排列 */
+  white-space: wrap;
+  margin-top: 30px;
+}
+
+.image-group view{
+  border: none; 
+  border-radius: 30px;
+  display: inline-block;
+  flex-direction: row;
+  width: 275rpx;
+  height: 275rpx;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+  background: transparent;
+}
+
+.image-group view image{
+  width: 100%;
+  height: 100%;
+  align-items: center;
+
+}
+
+.image-group view icon{
+  display: inline-block;
+  vertical-align: top;
+  position: absolute
+}
+
+.btn-func {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  align-items: center;
+}
+
+
+.btn {
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 60rpx;
+  font-size: 40rpx;
+  margin-top: 25rpx;
+  margin-bottom: 20rpx;
+  background-color:#a6a6ce;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.holder {
+  font-size: 26rpx;
+}
+
+.picimg {
+  width:60rpx;
+  height:60rpx;
+  margin-left:65rpx; 
+  margin-top: 12rpx;
+}
+
+.picimgview {
+  /*background: blue;*/
+  width: 208rpx;
+}
+
+
+.picbtnview {
+  
+  border: none; 
+  margin-top: 15px;
+  margin-bottom:15px;
+  border-radius: 25px;
+  background: #b59eb9;
+  margin-left: 20rpx;
+  background: linear-gradient(to right, #bdbbd6, #a892b4);
+}
+
+.input-content{
+  font-size: 40rpx;
+  padding: 20rpx;
+  color: rgb(73, 71, 71);
+}

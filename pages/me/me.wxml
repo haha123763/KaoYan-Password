@@ -21,4 +21,5 @@ bindgetuserinfo="onGotUserInfo">登录</button>
   <!-- 上传的图片展示 -->
   <image class="image" src="{{imgurl}}"></image>
 
+
 </view>

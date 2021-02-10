@@ -1,0 +1,11 @@
+/* 简单来点样式 */
+text {
+  padding-right: 30rpx;
+}
+/* END */
+
+/* 激活样式 */
+.active {
+  color: red;
+}
+/* END */

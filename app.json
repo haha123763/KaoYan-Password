@@ -1,17 +1,18 @@
 {
   "pages":[
+    "pages/homepage/homepage",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/tiku/tiku",
-    "pages/souti/souti",
-    "pages/exam_papers/exam_papers",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/map/map",
+    "pages/questionbank/questionbank",
+    "pages/publish/publish"
 
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#4A9191",
-    "navigationBarTitleText": "小福有研",
+    "navigationBarBackgroundColor": "#D8BFD8",
+    "navigationBarTitleText": "考研ing",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
@@ -22,20 +23,20 @@
     "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "社区",
+        "pagePath": "pages/homepage/homepage",
+        "text": "首页",
         "iconPath": "image/deer.png",
         "selectedIconPath": "image/deer-active.png"
       },
       {
-        "pagePath": "pages/tiku/tiku",
+        "pagePath": "pages/questionbank/questionbank",
         "text": "题库",
         "iconPath": "image/cattle.png",
         "selectedIconPath": "image/cattle-active.png"
       },
       {
-        "pagePath": "pages/souti/souti",
-        "text": "搜题",
+        "pagePath": "pages/map/map",
+        "text": "地图",
         "iconPath": "image/lion.png",
         "selectedIconPath": "image/lion-active.png"
       },
@@ -50,4 +51,5 @@
   },
 
   "sitemapLocation": "sitemap.json"
+  
 }

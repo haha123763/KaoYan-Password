@@ -1,0 +1,7 @@
+<text
+class="{{ index == current ? 'active' : '' }}"
+wx:for="{{ nav }}"
+wx:key="index"
+data-index="{{ index }}"
+bindtap="go"
+>{{ nav[index] }}</text>

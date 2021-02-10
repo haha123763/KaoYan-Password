@@ -1,0 +1,123 @@
+<!-- 主页 -->
+<loading hidden="{{loadingHidden}}">
+  数据加载中
+</loading>
+<wxs module="m">
+    var contain = function(a,id){
+        if(a.indexOf(id)>-1){
+            return true
+        }else{
+            return false
+        }
+    }
+    module.exports.contain=contain;
+</wxs>
+<view class="nav_wrap">
+        <scroll-view class="nav" scroll-x>
+            <view bind:tap="activeNav" data-index="{{index}}"
+                  class="nav_item {{index===currentIndexNav?'active':''}}"
+                  wx:for="{{navList}}" wx:key="index">
+                {{item}}
+            </view>
+        </scroll-view>
+</view>
+
+<!-- <view class="xuanze" >
+<view bindtap="change" style="background:Blue" data-show='1' id="shequ">社区动态</view>
+<view bindtap="change"   data-show='2' id="tiku">题库动态</view>
+</view> -->
+<!-- <l-tabs bind:linchange="change">
+        <l-tabpanel tab="社区动态" key="one" slot="one" id="shequ" >
+        </l-tabpanel>
+        <l-tabpanel tab="题库动态" key="two" slot="two" id="tiku" >
+        </l-tabpanel>
+</l-tabs> -->
+
+
+<view wx:if="{{show=='one'}}">
+  <scroll-view style="display:flex;width:100%" scroll-y>
+    <view class="container">
+      <!-- 存放轮播图 -->
+      <swiper autoplay="true" interval="2000" indicator-dots="true"
+      indicator-color="grey" indicator-active-color="pink"
+      style="width:100%;height:300rpx;margin-top:10rpx;" bindchange="changeSwiper" previous-margin="0rpx" next-margin="0rpx">
+      <block wx:for="{{imgList}}" wx:key>
+        <swiper-item class="swiperItem">
+            <image mode="scaleToFill" src='{{item.img}}' class="imageItem {{currentIndex == index ? 'active': ''}}"> </image>
+          </swiper-item>
+      </block>
+    </swiper>
+    </view>
+  </scroll-view>
+
+  <view class="container">
+     <!-- 普通动态 -->
+  <view class="weibo-group" wx:for='{{topics}}' wx:for-index="windex" wx:if="{{item.type===1}}">
+    <view class="user-group">
+      <image class="avatar" src = "{{item.user.avatarUrl}}"></image>
+      <view class="right-info">
+        <view class="username">{{item.user.nickName}}</view>
+        <view class="detail-info">
+          <view class="time">{{item.time}}</view>
+        </view>
+      </view>
+      <!-- 下拉框按钮 -->
+      <button class="xiala_btn" hover-class="none" style=" width: 40rpx;" data-openid="{{item._openid}}" data-topicId='{{item._id}}' 
+       open-type="getUserInfo"  bindgetuserinfo="xiala"><image src="../../images/xialakuang.png" class="xiala" ></image></button>
+    </view>
+   
+     <view class="weibo-content-group" bindtap="onItemClick" data-topicId='{{item._id}}' data-openid='{{item._openid}}'>
+      <view class="content">{{item.content}}</view>
+      <view wx:if="{{item.images.length===1}}" class="image-list-group">
+        <image src="{{item.images}}" mode="aspectFill" style="width:100%;max-height:400rpx" />
+      </view>
+      <view wx:elif="{{item.images.length===2 ||item.images.length===4}}" class="image-list-group">
+        <image wx:for="{{item.images}}" wx:for-item="image" src="{{image}}" 
+        mode="aspectFill" style="width:{{twoImageSize}}px;height:{{twoImageSize}}px;"/>
+      </view>
+      <view wx:else class="image-list-group">
+        <image wx:for="{{item.images}}" wx:for-item="image" src="{{image}}" 
+        mode="aspectFill" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;" />
+        <view wx:if="{{item.images.length%3 == 2}}" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;"></view>
+      </view>
+
+     </view>
+
+    <view class="weibo-handle">
+      <view class="comment-group">
+        <image src="../../images/pinglun.png" bindtap="onItemClick" data-topicId='{{item._id}}' data-openid='{{item._openid}}'  >评论
+        </image>
+      </view>
+
+      <!-- 点赞 -->
+      <view class="praise-group" wx:if="{{m.contain(priseDongtai,item._id)}}"  bindtap="PriseTap"
+       data-topicId='{{item._id}}' data-status="true" data-index="{{windex}}" >
+                 <image class="shoucang" src="../../images/zan1.png" ></image>
+                  <block >
+                    {{item.prise_num}}
+                  </block>
+      </view>
+      <view class="praise-group" wx:else  bindtap="PriseTap" data-topicId='{{item._id}}' data-status="false" >
+                 <image class="shoucang" src="../../images/zan.png"  data-index="{{windex}}"></image>
+                 <block >
+                  {{item.prise_num}}
+                </block>
+      </view>
+
+      <view class="jubao-group" bindtap="jubao" data-topicId='{{item._id}}'>
+        <image src="../../images/jubao.png">举报
+        </image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<button class="write-btn" open-type="getUserInfo"  bindgetuserinfo="onWriteWeiboTap" >
+    <view class="jiahao" >+</view>
+</button>
+
+</view>
+
+<view wx:if="{{show=='two'}}" style="margin-top:0rpx">
+
+</view>
