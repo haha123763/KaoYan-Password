@@ -93,11 +93,11 @@ getData: function(start=0) {
         })
 
         wx.hideNavigationBarLoading(); //隐藏加载
-        // wx.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       },
       fail: function(event) {
         wx.hideNavigationBarLoading(); //隐藏加载
-        // wx.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     })
 
@@ -108,7 +108,12 @@ getPrise(openid){
 },
 // 点击动态
 onItemClick:function(event){
-  console.log("onItemClick,,,,,,,,,,")
+  console.log("onItemClick,,,,,,,,,,",event)
+  var id = event.currentTarget.dataset.topicid;
+    var openid = event.currentTarget.dataset.openid;
+    wx.navigateTo({
+      url: "../homeDetail/homeDetail?id=" + id + "&openid=" + openid
+    })
 },
 // 新建动态，userInfo是官方给出的数据对象，封装了头像，昵称等数据
 onWriteWeiboTap:function(event){
@@ -137,6 +142,63 @@ activeNav(e) {
   }
 
 },
+xiala:function(e){
+// e.currentTarget.dataset.openid当前动态的id
+wx.showLoading({
+  title: '正在加载',
+})
+wx.cloud.callFunction({
+  name:"login",
+  data:{}
+}).then(res=>{
+  wx.hideLoading()
+  if(e.currentTarget.dataset.openid==res.result.openid){
+    console.log(e.currentTarget.dataset)
+    console.log(res.result)
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该条动态',
+      success: function (res) {
+        if (res.confirm) {
+          db.collection('topic').doc(e.currentTarget.dataset.topicid).remove().then(res=>{
+            wx.showToast({
+              title: '删除成功',
+            })
+            that.getData();
+            })
+        } 
+      }
+    })
+  }else{
+    // this.onItemClick()
+    console.log("onItemClick")
+    var id = e.currentTarget.dataset.topicid;
+    var openid = e.currentTarget.dataset.openid;
+    wx.navigateTo({
+      url: "../homeDetail/homeDetail?id=" + id + "&openid=" + openid
+    })
+  }
+})
+},
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    that.getData();
+  },
+
+
+
+
+
+
+
+
+
+
+
+
 // 返回页面实际上是把隐藏的上一级页面显现，
 // 可实现页面的重新刷新
 onShow:function(){

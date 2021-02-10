@@ -1,0 +1,77 @@
+<!--动态详情页面-->
+<loading hidden="{{loadingHidden}}">
+  数据加载中
+</loading>
+  <view class='container-content'>
+    <view class='user-info'>
+      <image class='user-head' src='{{topic.user.avatarUrl}}' mode='aspectFill'></image>
+      <view class='user-name-time'>
+        <view class='user-name'>{{topic.user.nickName}}</view>
+        <view class='user-publish-time'>{{topic.time}}</view>
+      </view>
+    </view>
+    <view class="weibo-content-group">
+      <view class="content">{{topic.content}}</view>
+      <view wx:if="{{topic.images.length===1}}" class="image-list-group" bindtap="previewImg">
+        <image src="{{topic.images}}" mode="aspectFill" style="width:100%;max-height:400rpx" />
+      </view>
+      <view wx:elif="{{topic.images.length===2 ||topic.images.length===4}}" class="image-list-group">
+        <image wx:for="{{topic.images}}" wx:for-index="idx" src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'
+         style="width:{{twoImageSize}}px;height:{{twoImageSize}}px;" />
+      </view>
+      <view wx:else class="image-list-group">
+        <image wx:for="{{topic.images}}" wx:for-index="idx" src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'
+         style="width:{{threeImageSize}}px;height:{{threeImageSize}}px" />
+        <view wx:if="{{topic.images.length%3 == 2}}" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;"></view>
+      </view>
+      
+
+     </view>
+
+</view>
+
+  <!-- 显示回复列表 -->
+  <view class='replay_content' wx:if="{{replays.length > 0}}">
+    <view class="content-box">全部评论</view>
+    <block wx:for="{{replays}}" wx:for-index="idx">
+      <view class="main-content">      
+        <view class="main-replay-content">
+            <view class="main-replay-header">
+              <view class="replay-main-header">
+                  <view class="louceng-box">{{idx + 1}}楼   </view> 
+                  <view style="width:150px;margin-left:5rpx; color: #999;">{{item.time}}</view>
+              </view>
+              <button class="xiala_btn" hover-class="none" style=" width: 40rpx;"  data-item='{{item}}' open-type="getUserInfo"  bindgetuserinfo="xiala"><image src="../../images/xialakuang.png" class="xiala" ></image></button>
+            </view>
+                <view class="content-maintext">{{item.content}}</view>   
+         </view> 
+      </view>
+    </block>
+  </view>
+  <view class='replay_content' wx:elif="{{replays.length === 0}}">
+    <view class="notice">暂无评论，快来抢沙发</view>
+  </view>
+
+  <!-- 写评论 -->
+  <view class='like-container'>
+    <button bindtap="bindReply">
+      回复
+    </button>
+    <view class="release">
+      <!-- 每输入一个字都会调用contentInput函数 -->
+    <textarea 
+      class="text"
+      placeholder-class="releaseInput"
+      value="{{content}}"
+      fixed="true" 
+      maxlength="150" 
+      show-confirm-bar="{{false}}" 
+      cursor-spacing="15" 
+      auto-height="true" 
+      focus="{{focus}}"
+      value="{{content}}"
+      bindinput="contentInput"
+      placeholder="说句废话"></textarea>
+    <view class="submit" bindtap="onReplayClick" >发送</view>
+  </view>
+  </view>

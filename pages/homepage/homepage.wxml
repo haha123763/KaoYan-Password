@@ -22,16 +22,6 @@
         </scroll-view>
 </view>
 
-<!-- <view class="xuanze" >
-<view bindtap="change" style="background:Blue" data-show='1' id="shequ">社区动态</view>
-<view bindtap="change"   data-show='2' id="tiku">题库动态</view>
-</view> -->
-<!-- <l-tabs bind:linchange="change">
-        <l-tabpanel tab="社区动态" key="one" slot="one" id="shequ" >
-        </l-tabpanel>
-        <l-tabpanel tab="题库动态" key="two" slot="two" id="tiku" >
-        </l-tabpanel>
-</l-tabs> -->
 
 
 <view wx:if="{{show=='one'}}">
@@ -119,5 +109,5 @@
 </view>
 
 <view wx:if="{{show=='two'}}" style="margin-top:0rpx">
-
+  
 </view>
