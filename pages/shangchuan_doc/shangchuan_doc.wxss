@@ -1,0 +1,88 @@
+page{
+  background-color: rgb(235, 233, 233);
+  background-image: url(https://uploadfile.bizhizu.cn/up/2e/07/93/2e0793e5a2912f9b4940e39e765c55c5.jpg);
+
+}
+.btns{
+  display:flex;
+}
+.line{
+  display:flex;
+  justify-content:space-between;
+  padding: 15rpx;
+  align-items:center;
+}
+.container{
+  margin-top: 25rpx;
+  /* background-color: rgb(235, 233, 233); */
+  background: transparent;
+  flex-wrap: wrap; 
+  padding: 12rpx;
+}
+.doc_name{
+  font-size: 30rpx;
+  margin: 12rpx;
+
+}
+.item{
+  padding: 10rpx;
+  width: 100%;
+  background-color: white;
+  border-radius: 5%;
+  margin-bottom: 30rpx;
+  align-items:center;
+}
+.upload{
+  background-color: white;
+  display:flex;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  align-items:center;
+  justify-content:space-around;
+}
+
+
+.fankui{
+  font-size: 25rpx;
+  color:gray;
+  margin-left: 10rpx;
+}
+.divLine{
+
+  background:rgb(100, 95, 95);
+  width:230rpx;
+  height: 4rpx;
+ 
+ }
+ .null{
+  font-size: 50rpx;
+  color:gray;
+  margin: auto auto;
+}
+.notice{
+  font-size:35rpx;
+  display: inline-block;
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+ }
+ .write-btn{ 
+  opacity: 0.7;
+  background: rgb(135, 117, 141);
+  font-size: 50rpx;
+  color: #ffffff;
+  box-shadow: grey;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100rpx;
+  width:100rpx;
+  border-radius: 50%;
+  position: fixed;
+  top: 80%;
+  left: 80%;
+}
+.jiahao{
+  color: rgb(240, 242, 245);
+  font-size: 50rpx;
+  margin-top: -10rpx;
+}

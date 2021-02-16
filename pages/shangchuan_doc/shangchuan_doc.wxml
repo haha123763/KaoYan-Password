@@ -1,0 +1,28 @@
+<!-- 查看上传文件页面 -->
+<loading hidden="{{loadingHidden}}">
+  数据加载中
+</loading>
+<view class="null" style="margin-top:50rpx;" wx:if="{{my_upDoc.length===0}}">
+         你还没有上传题目
+</view>
+<view class="container" wx:else>
+        <view class="notice" >已纳入题库</view>
+        <view class="item" wx:for="{{my_upDoc}}" wx:if="{{item.paper_status==='已纳入题库'}}">
+                <view class="doc_name">{{item.paper_name}}</view>
+                <view class="line">
+                  <image src="../../images/duoren.png" style="width:50rpx;height:50rpx;"></image>
+                  <view class="fankui" bindtap="fankui" data-status="{{item.paper_status}}" data-title="{{item.paper_name}}" data-score="{{item.pingjia_fenshu}}">查看反馈</view>
+                </view>
+        </view>
+        <view class="notice" >正在审核</view>
+        <view class="item" wx:for="{{my_upDoc}}" wx:if="{{item.paper_status==='正在审核'}}">
+            <view class="doc_name">{{item.paper_name}}</view>
+            <view class="line">
+              <image src="../../images/duoren.png" style="width:50rpx;height:50rpx;"></image>
+              <view class="fankui" bindtap="fankui" data-status="{{item.paper_status}}" data-title="{{item.paper_name}}" data-score="{{item.pingjia_fenshu}}">查看反馈</view>
+            </view>
+        </view>
+</view>
+<button class="write-btn" bindtap="up_doc" open-type="getUserInfo"  bindgetuserinfo="up_doc" >
+    <view class="jiahao" >+</view>
+</button>

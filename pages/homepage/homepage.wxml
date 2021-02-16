@@ -1,7 +1,7 @@
 <!-- 主页 -->
-<!-- <loading hidden="{{loadingHidden}}">
+<loading hidden="{{loadingHidden}}">
   数据加载中
-</loading> -->
+</loading>
 <!-- 判断数组a中是否包含元素id -->
 <wxs module="m">
     var contain = function(a,id){
@@ -112,5 +112,51 @@
 </view>
 
 <view wx:if="{{show=='two'}}" style="margin-top:0rpx">
-  
+  <view class="container" >
+   
+    <view wx:for='{{topics}}' wx:for-index="windex">
+       <!-- 文档动态 -->
+      <view class="weibo-group"   wx:if="{{item.type===2}}" >
+        <view class="user-group">
+          <image class="avatar"src = "{{item.user.avatarUrl}}"></image>
+          <view class="right-info">
+          <view class="username">{{item.user.nickName}}</view>
+          <view class="detail-info">
+            <view class="time">{{item.time}}</view>
+          </view>
+        </view>
+       </view>
+
+       <view class="weibo-content-group" bindtap="doc_dongtai" data-id="{{item._id}}">
+        <view class="title">{{item.paper_name}}</view>
+          <view class="notice">
+            我上传了{{item.paper_type}}真题，快来看看！
+          </view>
+     </view>
+       </view>
+
+       <!-- 题目动态 -->
+       <view class="weibo-group"    wx:if="{{item.type===3||item.type===4}}">
+        <view class="user-group">
+          <image class="avatar" src = "{{item.user.avatarUrl}}"></image>
+          <view class="right-info">
+            <view class="username">{{item.user.nickName}}</view>
+            <view class="detail-info">
+                <view class="time">{{item.time}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="weibo-content-group"    bindtap="timu_dongtai" data-type="{{item.type}}" data-id="{{item.timu_id}}">
+          <view class="timu">{{item.content}}</view>
+          <view wx:if="{{item.content===''}}">
+            <image src="{{item.con_img}}" mode="aspectFit" style="width:100%;max-height:400rpx" />
+          </view>
+          <view class="notice">
+            我上传了真题，快来看看！
+          </view>
+
+        </view>
+       </view>
+     </view>
+</view>
 </view>

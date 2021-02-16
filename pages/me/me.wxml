@@ -1,25 +1,39 @@
-<view wx:if="{{!openid}}">
-  <!--open-type="getUserInfo" 引导用户进行授权 -->
-<button open-type="getUserInfo" lang="zh_CN"
-bindgetuserinfo="onGotUserInfo">登录</button>
+<view class='head head-height'>
+  <!-- 未登录 -->
+  <block wx:if="{{!hasUserInfo}}">
+    <view class="userinfo">
+      <image class="userinfo-avatar" src="../../images/touxiang.png" mode="cover"></image>
+        <button class="login-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击获取头像昵称 </button>
+    </view>
+  </block>
+<!-- 已登录 -->
+  <block wx:else>
+    <view class="userinfo">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+  </block>
 </view>
-
-<view class="uploader-container" wx:if="{{openid}}">
-  <!-- 用户头像 -->
-  <image class="image" src="{{userinfo.avatarUrl}}"></image>
-  <!-- 用户昵称 -->
-  <view class="name">{{userinfo.nickName}}</view>
-</view>
-
-<view>
-  <button class="btn" hover-class="upload_btn_hover" bindtap="upload">上传图片</button>
-
-  <button class="btn" hover-class="upload_btn_hover" bindtap="upload_documents">上传文档</button>
-</view>
-
-<view class="uploader-container" >
-  <!-- 上传的图片展示 -->
-  <image class="image" src="{{imgurl}}"></image>
-
-
+<view class="list-wrapper">
+  <button wx:for="{{menuitems}}" wx:key="item" class="list-item" style="width:100%;height:110rpx;margin-top:8rpx;" open-type="getUserInfo"  bindgetuserinfo="tiaozhuan" data-url="{{item.url}}">
+    <view>
+      <view  class='item' bindtap="{{item.url}}" hover-class="none">
+          <image class='item-image' src="{{item.icon}}"></image>
+          <text class="item-text">{{item.text}}</text>
+          <text class='item-array'>></text>
+        </view>
+        <view class="div-line"></view>
+    </view>
+  </button>
+  <!-- <button class="list-item"   style="width:100%;height:120rpx;margin-top:10rpx;"
+    wx:for="{{menuitems}}" wx:key="item" open-type="getUserInfo"  bindgetuserinfo="tiaozhuan" data-url="{{item.url}}" >
+    <view>
+      <view class='item' bindtap="{{item.url}}" hover-class="none">
+          <image class='item-image' src="{{item.icon}}"></image>
+          <text class="item-text">{{item.text}}</text>
+          <text class='item-array'>></text>
+        </view>
+        <view class="div-line"></view>
+    </view>
+  </button> -->
 </view>

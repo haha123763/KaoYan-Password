@@ -1,0 +1,19 @@
+<loading hidden="{{loadingHidden}}">
+  数据加载中
+</loading>
+<image src="../../images/wenjian2.png"></image>
+<view class="title">{{title}}</view>
+
+<view class="line">
+<view class="divLine" style="margin-right: 10rpx;"></view>
+用户评价
+<view class="divLine"  style="margin-left: 10rpx;"></view>
+</view>
+<view class="value">用户评分：{{score}}</view>
+<view class="value" style="font-size:30rpx;color:gray;">当用户评价超过5分时，将纳入题库</view>
+<view class="line">
+<view class="divLine" style="margin-right: 10rpx;"></view>
+文档状态
+<view class="divLine"  style="margin-left: 10rpx;"></view>
+</view>
+<view class="value">{{status}}</view>

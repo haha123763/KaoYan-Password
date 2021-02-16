@@ -1,0 +1,21 @@
+<loading hidden="{{loadingHidden}}">
+  数据加载中
+</loading>
+  <image class="document" src="../../images/wenjian2.png"></image>
+   <view class="title">{{paper_name}}</view>
+  <view class='operation'>
+    <view class="line">
+          <view class="divLine" style="margin-right: 10rpx;"></view>{{status}}<view class="divLine"  style="margin-left: 10rpx;"></view>
+      </view>
+      <button class="download" bindtap="download">查看
+      </button>
+
+      <view class="line">
+          <view class="divLine" style="margin-right: 10rpx;"></view>
+          评价
+          <view class="divLine"  style="margin-left: 10rpx;"></view>
+      </view>
+              <button bindtap="pingjia" data-operate="1">该文档对我有帮助</button>
+              <button bindtap="pingjia" data-operate="-1">文档内容与标题不符</button>
+ </view>
+

@@ -1,20 +1,33 @@
 {
   "pages":[
+    
     "pages/homepage/homepage",
     "pages/homeDetail/homeDetail",
+    "pages/doc_dongtai/doc_dongtai",
+    "pages/timu_dongtai/timu_dongtai",
     "pages/index/index",
     "pages/logs/logs",
     "pages/me/me",
     "pages/map/map",
     "pages/questionbank/questionbank",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/star_doc/star_doc",
+   "pages/star_timu/star_timu",
+   "pages/shangchuan_doc/shangchuan_doc",
+   "pages/up_doc/up_doc",
+   "pages/fankui/fankui",
+   "pages/shangchuan_timu/shangchuan_timu",
+   "pages/history_dongtai/history_dongtai",
+   "pages/kefu/kefu",
+   "pages/study_record/study_record"
 
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#D8BFD8",
     "navigationBarTitleText": "考研ing",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true    
   },
   "tabBar": {
     "color": "#7a7a00",

@@ -1,0 +1,39 @@
+<form class="contain">
+  <view class="up" bindtap="upload_paper">
+  <view wx:if="{{choose_paper}}" class="choose">
+    <image src="../../images/paper.png" class="choose_paper"></image>
+    <view class="doc_name">{{tempfile_name}}</view>
+  </view>
+  <view wx:else> 点击上传文件</view>
+  </view>
+  <view  class="fenlei" >
+    <view class="divLine" style="margin-right: 10rpx;"></view>选择分类
+    <view class="divLine"  style="margin-left: 10rpx;"></view>
+  </view>
+
+   <!-- 下拉框 -->
+  <view class='select_box' style="z-index:300;">
+      <view class='select' catchtap='selectTap'>
+          <text class='select_text'>{{selectData[index]}}</text>
+          <image class='select_img {{selectShow&&"select_img_rotate"}}' src='../../images/xiala.png'  background-size="contain"></image> 
+      </view>
+      <view class='option_box' style='height:{{selectShow?(selectData.length>5?325:selectData.length*50):0}}rpx;'>
+          <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+      </view>
+  </view>
+
+  <view class='select_box'>
+    <view class='select' catchtap='selectTap2'>
+      <text class='select_text'>{{selectData2[index2]}}</text>
+      <image class='select_img {{selectShow&&"select_img_rotate"}}' src='../../images/xiala.png'  background-size="contain"></image> 
+    </view>
+    <view class='option_box' style='height:{{selectShow2?(selectData2.length>5?325:selectData2.length*50):0}}rpx;'>
+          <text class='option' wx:for='{{selectData2}}' wx:key='this' data-index='{{index}}' catchtap='optionTap2'>{{item}}</text>
+      </view>
+  </view>
+
+  
+  <button class='up_btn' bindtap="upload_paper_yun">
+    上传
+  </button>
+</form>

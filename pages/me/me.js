@@ -1,115 +1,62 @@
+//获取应用实例
+const app = getApp();
 Page({
-  data:{
-    userinfo:{},
-    openid:"",
-    imgurl:"",
-    documenturl:"",
-  },
-  onGotUserInfo:function(e){
-    const that=this
-// 调用云函数
-    wx.cloud.callFunction({
-      //  调用自定义的云函数的名称
-      name:"login",
-      success:res=>{
-        that.setData({
-          openid:res.result.openid,
-          userinfo:e.detail.userInfo
-        })
-        // 把openid保存在缓存中
-        that.data.userinfo.openid=this.data.openid
-        wx.setStorageSync('userinfo', that.data.userinfo)
+  data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    menuitems: [
+      { text: '收藏文档', url: '../star_doc/star_doc', icon: '../../images/star.png', tips: '' },
+      { text: '上传文档', url: '../shangchuan_doc/shangchuan_doc', icon: '../../images/wenjian.png', tips: '' },
+      { text: '收藏题目', url: '../star_timu/star_timu', icon: '../../images/shoucang.png', tips: '' },
+      { text: '上传题目', url: '../shangchuan_timu/shangchuan_timu', icon: '../../images/wendang.png', tips: '' },
+      { text: '我的动态', url: '../history_dongtai/history_dongtai', icon: '../../images/lishi.png', tips: '' },
+      { text: '自习记录', url: '../study_record/study_record', icon: '../../images/lishi.png', tips: '' },
 
-      },
-      fail:res=>{
-        console.log("云函数调用失败")
-      }
-    })
+      { text: '我的客服', url: '../kefu/kefu', icon: '../../images/kefu.png', tips: '' },
+    ]
   },
-  // 页面加载时从缓存中取出userinfo
+
   onLoad:function(options){
-    const ui=wx.getStorageSync('userinfo')
+    if(app.is_login){
       this.setData({
-        userinfo:ui,
-        openid:ui.openid
-       })
-  },
-
-
-// 上传图片，上传成功后生成一个图片链接res.tempFilePaths[0]
- upload(){
-   let that=this;
-   console.log("点击上传")
-   wx.chooseImage({
-    count: 1,
-    sizeType: ['original', 'compressed'],
-    sourceType: ['album', 'camera'],
-    success (res) {
-      console.log("选择成功",res)
-      that.uploadImg(res.tempFilePaths[0])
-    }
-  })
- },
- uploadImg(fileurl){
-          wx.cloud.uploadFile({
-          cloudPath:new Date().getTime()+".jpeg",
-          filePath:fileurl,
-          success:res=>{
-            console.log("上传图片成功",res)
-            this.setData({
-              // res.fileID是上传的图片的url
-              imgurl:res.fileID
-            })
-            wx.showToast({
-              icon:"success",
-              title: '上传图片成功',
-            })
-          },fail:console.error
-        })
- },
-
-// 上传doc文档
-  upload_documents(){
-    let that=this;
-    wx.chooseMessageFile({
-      count: 1,
-      type: 'all',
-      success (res) {
-        console.log("调用云函数",res)
-        that.upload_documents_yun(res.tempFiles[0].path)
-      }
-    })
-  },
-upload_documents_yun(fileurl){
-  wx.cloud.uploadFile({   
-    cloudPath:"exam_papers/"+new Date().getTime()+"2019考研真题.docx",
-    filePath:fileurl,
-    success:res=>{
-      console.log("上传doc成功",res.fileID)
-      wx.showToast({
-        icon:"success",
-        title: '上传文件成功',
+        userInfo:app.globalData.userInfo,
+        hasUserInfo:true
       })
-      // 把文件信息存储到云数据库
-      this.add_paperList(res.fileID)
-    },fail:console.error
-  })
-},
-
-// 把文件信息存储到云数据库
-  add_paperList(url){
-    console.log("上传数据",url)
-    console.log(url.split('/')[4].substring(13))
-    let that=this;
-    wx.cloud.database().collection('exam_papers').add({
-      data:{
-        paperName:url.split('/')[4].substring(13),
-        paperUrl:url
-      },
-      success(res){
-        console.log("试题信息存储到数据库success",res)
-      },fail(res) { console.log(res) }
+      console.log("用户已登录", this.data.userInfo)
+    }else{
+      console.log("用户未登录", this.data.userInfo)
+    }
+  },
+  onShow:function(options){
+    if(app.is_login()){
+      this.setData({
+        userInfo:app.globalData.userInfo,
+        hasUserInfo:true
+      })
+      console.log("用户已登录", this.data.userInfo)
+    }else{
+      console.log("用户未登录", this.data.userInfo)
+    }
+  },
+  getUserInfo:function(event){
+    console.log("登录按钮aaaaa",event);
+    const userInfo=event.detail.userInfo;
+    if(userInfo){
+      this.setData({
+        userInfo:event.detail.userInfo,
+        hasUserInfo:true
+      })
+      app.setUserInfo(userInfo);
+    }
+  },
+  tiaozhuan:function(event){
+    const userInfo=event.detail.userInfo;
+    console.log("跳转页面")
+      if(userInfo){
+    wx.navigateTo({
+      url: event.currentTarget.dataset.url
     })
-
   }
+}
 })

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    totalCount: 0,
     show:'one',
     navList:["社区动态","题目动态"],
     priseDongtai:[],
@@ -108,10 +109,9 @@ getPrise(openid){
        userid:openid
      }
    }).then(res=>{
-     console.log(res,"get结果")
     //  数据库未存储该用户的点赞信息
     if(res.result.data.length==0){
-      console.log("还没有点过赞",res.result)
+  
       wx.cloud.callFunction({
         name:"prise",
         data:{
@@ -119,10 +119,10 @@ getPrise(openid){
           userid:openid
         }
       }).then(res=>{
-        console.log("增加user成功",res)
+
       })
     }else{
-      console.log(res.result.data[0],"aaaaaaa")
+
       this.setData({
         loadingHidden:true,
         priseDongtai:res.result.data[0].priseDongtai
@@ -132,7 +132,6 @@ getPrise(openid){
 },
 // 点赞或取消点赞
 PriseTap:function(event){
-  console.log(",,,,,,,,,,,,取消点赞")
   if(event.currentTarget.dataset.status=="true"){
     console.log("取消点赞")
     wx.cloud.callFunction({
@@ -339,21 +338,70 @@ wx.cloud.callFunction({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+    console.log("下拉")
     wx.showNavigationBarLoading() //在标题栏中显示加载
+    wx.showLoading({
+      title: '刷新中...',
+    })
     that.getData();
+    that.getPrise(this.data.openid);
+
+    
   },
 
+timu_dongtai:function(e){
+  wx.navigateTo({
+    url: '../timu_dongtai/timu_dongtai?id='+e.currentTarget.dataset.id+'&type='+e.currentTarget.dataset.type+"&op=0",
+  })
+},
+doc_dongtai:function(e){
+  console.log("doc动态页面")
+  wx.navigateTo({
+    url: '../doc_dongtai/doc_dongtai?id='+e.currentTarget.dataset.id,
+  })
+},
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    console.log("bottom")
+    var temp = [];
+    // 获取后面十条
+    if (this.data.topics.length < this.data.totalCount) {
+      const db = wx.cloud.database();
+      db.collection('topic').get({
+        success: function(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          if (res.data.length > 0) {
+            for (var i = 0; i < res.data.length; i++) {
+              var tempTopic = res.data[i];
 
+              temp.push(tempTopic);
+            }
 
+            var totalTopic = {};
+            totalTopic = that.data.topics.concat(temp);
 
+            
+            that.setData({
+              topics: totalTopic,
+            })
+          } else {
+            wx.showToast({
+              title: '已经到底了',
+              icon:'none'
+            })
+          }
+        },
+      })
+    } else {
+      wx.showToast({
+        title: '已经到底了',
+        icon:'none'
+      })
+    }
 
-
-
-
-
-
-
-
+  },
 // 返回页面实际上是把隐藏的上一级页面显现，
 // 可实现页面的重新刷新
 onShow:function(){

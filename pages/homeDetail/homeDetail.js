@@ -22,10 +22,11 @@ Page({
    */
   onLoad: function (options) {
     that=this
+    console.log("回复idddd",options.id)
     that.data.id = options.id;
     that.data.openid = options.openid;
     this.initImageSize()
-    // 获取话题信息
+    // 获取话题信息不包括评论
     db.collection('topic').doc(that.data.id).get({
       success:function(res){
         that.topic=res.data
@@ -78,6 +79,7 @@ Page({
   },
   getReplay: function() {
     // 获取回复列表
+    console.log("获取评论的数据")
     db.collection('replay')
       .where({
         t_id: that.data.id
@@ -85,7 +87,7 @@ Page({
       .get({
         success: function(res) {
           // res.data 包含该记录的数据
-          console.log(res)
+          console.log(res,"获取回复的内容")
           that.setData({
             replays: res.data,
             loadingHidden:true

@@ -1,0 +1,61 @@
+page{
+  /* background-color: rgb(247, 241, 241); */
+  background-image: url(https://uploadfile.bizhizu.cn/up/2e/07/93/2e0793e5a2912f9b4940e39e765c55c5.jpg);
+  padding-top: 20rpx;
+}
+
+.line{
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  /* justify-content:space-around; */
+  margin: 0;
+  padding:0 rpx 8rpx;
+}
+.fenzhong{
+  color: rgb(85, 79, 79);
+  margin-top: 45rpx;
+}
+.card{
+  border-style: solid;
+  box-shadow:0px 2px 4px 2px #d3d3d3;
+  border-width: 0rpx;
+  /* display: grid; */
+  background-color: white;
+  border-radius: 10rpx;
+  width: 260rpx;
+  padding: 15rpx 20rpx;
+  margin:20rpx 20rpx;
+  font-size: 35rpx;
+  height: 200rpx;
+}
+.study_time{
+  font-size:80rpx;
+  color:rgb(52, 52, 143);
+  font-weight:310;
+}
+.room{
+  font-size:30rpx;
+  font:rgb(63, 63, 117);
+  /* font-weight:700; */
+}
+.time{
+  font-size:30rpx;
+  font:rgb(96, 96, 131);
+  /* font-weight:700; */
+}
+
+
+.container {
+  flex-wrap: wrap;
+  background: transparent;
+  flex-direction:row;
+  display: flex;
+  }
+
+
+  .null{
+    font-size: 50rpx;
+    color:gray;
+    margin: auto auto;
+  }

@@ -1,0 +1,103 @@
+.contain{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+.up{
+  border-radius: 7%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color: rgb(49, 46, 46);
+  font-size: 30rpx;
+  width:650rpx;
+  margin:20rpx auto;
+  margin-bottom: 40rpx;
+  height: 400rpx;
+  border: 2rpx dashed  rgb(49, 46, 46);
+}
+
+.divLine{
+  
+  background:rgb(100, 95, 95);
+  width:230rpx;
+  height: 4rpx;
+ 
+ }
+ .fenlei{
+  font-size:40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin-bottom: 20rpx;
+ }
+
+ .select_box{
+   z-index: 100;
+   width: 400rpx;
+  height:70%;
+  position: relative;
+  margin: 20rpx auto;
+  margin-bottom: 100rpx ;
+}
+.select_box .select{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background-color:rgb(233, 235, 223);
+}
+ .select_text{
+  font-size: 26rpx;
+  color: #1d1919;
+  line-height: 70rpx;
+  flex: 1;
+}
+.select_img{
+  width: 30rpx;
+  height: 30rpx;
+  display: block;
+  transition:transform 0.3s;
+}
+
+.select_img_rotate{
+  transform:rotate(180deg); 
+}
+.select_box .option_box{
+  position: absolute;
+  top: calc(100% - 1px);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: rgb(210, 211, 204);
+  transition: height 0.3s;
+  border-left:1px solid #efefef;
+  border-right:1px solid #efefef;
+}
+ .option_box .option{
+  display: block;
+  line-height: 30rpx; 
+  font-size: 26rpx;
+  border-top: 1px solid #efefef;
+  padding: 10rpx;
+}
+
+.up_btn{
+  background-color:#a6a6ce;
+  color: white;
+  border-radius: 10%;
+  width: 300rpx;
+  margin-top: 200rpx;
+}
+.choose{
+  margin: 20rpx auto;
+  display: flex;
+  flex-direction:column;
+}
+.choose_paper{
+  height: 170rpx;
+  width: 170rpx;
+}
+.doc_name{
+  top:60rpx;
+  margin: 20rpx auto;
+}

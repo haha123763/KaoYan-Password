@@ -1,0 +1,30 @@
+image{
+  width: 300rpx;
+  height: 300rpx;
+
+  margin: 20rpx auto;
+}
+.divLine{
+
+  background:rgb(100, 95, 95);
+  width:230rpx;
+  height: 4rpx;
+ 
+ }
+ .line{
+  font-size:30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin: 20rpx auto;
+ }
+ .title{
+   margin: 20rpx auto;
+   font-size: 40rpx;
+   color: rgb(68, 65, 65);
+ }
+ .value{
+  margin: 20rpx auto;
+  font-size: 40rpx;
+  color: rgb(7, 6, 6);
+ }
